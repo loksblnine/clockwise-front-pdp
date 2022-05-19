@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const apiGet = axios.create({baseURL: "https://enigmatic-spire-58695.herokuapp.com"})
-export const apiPost = axios.create({baseURL: "https://enigmatic-spire-58695.herokuapp.com"})
-export const apiPut = axios.create({baseURL: "https://enigmatic-spire-58695.herokuapp.com"})
-export const apiDelete = axios.create({baseURL: "https://enigmatic-spire-58695.herokuapp.com"})
+export const apiGet = axios.create({baseURL: "http://localhost:5000"})
+export const apiPost = axios.create({baseURL: "http://localhost:5000"})
+export const apiPut = axios.create({baseURL: "http://localhost:5000"})
+export const apiDelete = axios.create({baseURL: "http://localhost:5000"})
 
 apiGet.interceptors.request.use((config) => {
   config.method = "get";

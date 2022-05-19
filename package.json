@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.8",
+    "@vue/cli": "^5.0.4",
     "axios": "^0.26.1",
     "core-js": "^3.21.1",
+    "mdbvue": "^6.7.3",
     "mosha-vue-toastify": "^1.0.23",
     "vue": "^3.2.31",
     "vue-cli": "^2.9.6",

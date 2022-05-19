@@ -16,20 +16,32 @@ import {apiGet} from "@/http/requestsPlaceholder"
 export default defineComponent({
   name: 'App',
   mounted() {
+    //dispatch to store cities
     apiGet({
       url: "/cities"
     })
+    //dispatch to store token?
   }
 })
 </script>
 
 <style lang="scss">
+
+@font-face {
+  font-family: "Balttiffany";
+  src: local("Balttiffany"),
+  url(assets/fonts/balttiffany.ttf) format("truetype");
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #eee;
+  height: 100vh;
+  width: 100vw;
 }
 
 #nav {
