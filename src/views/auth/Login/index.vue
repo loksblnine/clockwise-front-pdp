@@ -37,7 +37,8 @@
 
                     <div class="d-flex align-items-center justify-content-center pb-4">
                       <p class="mb-0 me-2">Don't have an account?</p>
-                      <button type="button" class="btn btn-outline-danger" v-on:click="redirectRegister()">Create new</button>
+                      <button type="button" class="btn btn-outline-danger" v-on:click="redirectRegister()">Create new
+                      </button>
                     </div>
                   </form>
                 </div>
@@ -61,9 +62,8 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import router from "@/router";
-import {createToast} from 'mosha-vue-toastify';
 import 'mosha-vue-toastify/dist/style.css'
-import {apiPost} from "@/http/requestsPlaceholder"
+import store from "@/store";
 
 export default defineComponent({
   name: "Login",
@@ -78,17 +78,9 @@ export default defineComponent({
       router.push('/registration')
     },
     login() {
-      apiPost({
-        url: "/auth/login",
-        data: {
-          email: this.email,
-          password: this.password
-        }
-      }).then(({data}: any) => {
-        localStorage.setItem('token', data.token)
-        router.push("/admin")
-      }).catch(() => {
-        createToast('Oops... Something went wrong', {type: "danger"})
+      store.dispatch("USER_LOGIN", {
+        email: this.email,
+        password: this.password
       })
     }
   }
@@ -97,13 +89,10 @@ export default defineComponent({
 
 <style scoped>
 .gradient-custom-2 {
-  /* fallback for old browsers */
   background: #fccb90;
 
-  /* Chrome 10-25, Safari 5.1-6 */
   background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
 
@@ -120,6 +109,7 @@ export default defineComponent({
     border-bottom-right-radius: .3rem;
   }
 }
+
 @media (max-width: 991px) {
   .gradient-custom-2 {
     display: none !important;

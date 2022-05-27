@@ -1,20 +1,21 @@
 <template>
-  <button type="button" class="btn btn-primary" v-on:click="this.modal.show()">
-    Launch demo modal
+  <button type="button" class="btn btn-outline-success" v-on:click="this.modal.show()">
+    Add city
   </button>
   <div class="modal fade" ref="exampleModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add city</h5>
           <button type="button" class="btn-close" v-on:click="this.modal.hide()" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <span>Input city name</span>
+          <input v-model="cityName" class="form-control"/>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" v-on:click="this.modal.hide()">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary" v-on:click="submitForm()">Save changes</button>
         </div>
       </div>
     </div>
@@ -22,7 +23,8 @@
 </template>
 
 <script lang="js">
-import { Modal } from 'bootstrap'
+import {Modal} from 'bootstrap'
+import store from "../../../../store";
 
 export default {
   name: "AddCity",
@@ -34,7 +36,8 @@ export default {
   },
   methods: {
     submitForm() {
-      console.log("post123")
+      store.dispatch("POST_CITY", {city_name: this.cityName})
+      this.modal.hide()
     }
   },
   mounted() {

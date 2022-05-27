@@ -1,0 +1,4 @@
+const AuthRoutes = [
+  "/cities",
+  "/admin"
+]

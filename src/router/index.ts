@@ -7,24 +7,26 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "Home" */ '../views/home/index.vue'),
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import(/* webpackChunkName: "About" */ '../views/about/index.vue'),
-  },
-  {
-    path: '/login',
+    path: '/Login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "Login" */ '../views/auth/login/index.vue'),
+    component: () => import(/* webpackChunkName: "Login" */ '../views/auth/Login/index.vue'),
   },
   {
     path: '/registration',
     name: 'Registration',
-    component: () => import(/* webpackChunkName: "Registration" */ '../views/auth/register/index.vue'),
+    component: () => import(/* webpackChunkName: "Registration" */ '../views/auth/Register/index.vue'),
   },
   {
     path: '/admin',
     name: 'Admin',
     component: () => import(/* webpackChunkName: "Admin" */ '../views/admin/index.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },{
+    path: '/cities',
+    name: 'ListCities',
+    component: () => import(/* webpackChunkName: "ListCities" */ '../views/admin/cities/ListCities/index.vue'),
     meta: {
       requiresAuth: true
     }
@@ -50,7 +52,7 @@ const auth = {
 router.beforeEach((to, from) => {
   if (to.meta.requiresAuth && !auth.isLoggedIn()) {
     return {
-      path: '/login',
+      path: '/Login',
       query: {redirect: to.fullPath},
     }
   }

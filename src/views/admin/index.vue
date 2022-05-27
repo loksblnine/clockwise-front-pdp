@@ -1,6 +1,6 @@
 <template>
   <div>
-    this is admin page
+    You logged in as Administrator
   </div>
   <ListCities/>
 </template>
